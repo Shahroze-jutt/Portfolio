@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahroze Afzal | Automation Engineer & n8n Specialist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3B82F6;
+            --primary-dark: #1E40AF;
+            --primary-light: #DBEAFE;
+            --secondary: #8B5CF6;
+            --accent: #EC4899;
+            --text-primary: #1F2937;
+            --text-secondary: #6B7280;
+            --text-light: #9CA3AF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F9FAFB;
+            --bg-tertiary: #F3F4F6;
+            --border: #E5E7EB;
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-primary: #F9FAFB;
+                --text-secondary: #D1D5DB;
+                --text-light: #9CA3AF;
+                --bg-primary: #111827;
+                --bg-secondary: #1F2937;
+                --bg-tertiary: #374151;
+                --border: #4B5563;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        header .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button, a.btn {
+            padding: 12px 28px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a.btn:hover, button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        a.btn.primary, button.primary {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+
+        a.btn.primary:hover, button.primary:hover {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        nav {
+            background: var(--bg-secondary);
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        section {
+            padding: 80px 20px;
+        }
+
+        section h2 {
+            font-size: 36px;
+            margin-bottom: 48px;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .skill-card {
+            background: var(--bg-secondary);
+            padding: 28px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .skill-card h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 6px 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .skill-card li:before {
+            content: "→ ";
+            color: var(--primary);
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-header h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .project-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .project-body {
+            padding: 24px;
+        }
+
+        .project-body p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .metrics {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .metric {
+            background: var(--bg-tertiary);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .tech-badge {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .case-study {
+            background: var(--bg-secondary);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 32px;
+        }
+
+        .case-study h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .case-study-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+
+        .case-study-meta span {
+            color: var(--text-secondary);
+        }
+
+        .case-study-meta strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .flow-diagram {
+            background: var(--bg-tertiary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            color: var(--text-secondary);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .timeline-content h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .about-content {
+            background: var(--bg-secondary);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .about-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .about-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .highlight {
+            background: var(--bg-tertiary);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .highlight-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .highlight-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 8px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 32px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            section h2 {
+                font-size: 28px;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            .case-study {
+                padding: 24px;
+            }
+
+            .project-header {
+                min-height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="container">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#case-studies">Case Studies</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <div class="container">
+            <h1>Shahroze Afzal</h1>
+            <p class="subtitle">Automation Engineer & n8n Specialist</p>
+            <p style="font-size: 16px; max-width: 600px; margin: 0 auto 32px; line-height: 1.7;">Building production-grade AI voice agents, workflow automation, and lead qualification systems that help businesses scale without hiring</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn primary">View My Work</a>
+                <a href="#contact" class="btn">Get in Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="skills" style="background: var(--bg-tertiary);">
+        <div class="container">
+            <h2>Skills & Tools</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>🤖 Automation Platforms</h3>
+                    <ul>
+                        <li>n8n (advanced)</li>
+                        <li>Make.com / Zapier</li>
+                        <li>GoHighLevel</li>
+                        <li>Workflow optimization</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>🎤 AI Voice Agents</h3>
+                    <ul>
+                        <li>Retell AI</li>
+                        <li>Vapi AI</li>
+                        <li>Twilio integration</li>
+                        <li>Call routing & logic</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>💬 Large Language Models</h3>
+                    <ul>
+                        <li>Claude API</li>
+                        <li>Prompt engineering</li>
+                        <li>System design</li>
+                        <li>LLM-powered workflows</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>🔗 Integration & APIs</h3>
+                    <ul>
+                        <li>REST APIs & webhooks</li>
+                        <li>JSON data handling</li>
+                        <li>Custom JavaScript</li>
+                        <li>HTTP requests</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>📊 Databases & CRM</h3>
+                    <ul>
+                        <li>Airtable</li>
+                        <li>PostgreSQL</li>
+                        <li>Supabase</li>
+                        <li>Data mapping</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>📅 Calendar & Booking</h3>
+                    <ul>
+                        <li>Cal.com</li>
+                        <li>Calendly</li>
+                        <li>Schedule sync</li>
+                        <li>Appointment automation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Lead Qualification Agent</h3>
+                        <p>AI-powered voice qualification system</p>
+                    </div>
+                    <div class="project-body">
+                        <p>24/7 automated outbound system that calls new leads within seconds of form submission, runs qualification questions, and books meetings directly into the calendar.</p>
+                        <div class="metrics">
+                            <span class="metric">95% Faster</span>
+                            <span class="metric">Auto-book</span>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">n8n</span>
+                            <span class="tech-badge">Retell AI</span>
+                            <span class="tech-badge">Twilio</span>
+                            <span class="tech-badge">Cal.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Invoice Processing</h3>
+                        <p>Automated document extraction</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Document processing pipeline extracting invoice data (line items, amounts, dates) from PDF/image files and auto-populating spreadsheets using OCR and structured extraction.</p>
+                        <div class="metrics">
+                            <span class="metric">95% Time Save</span>
+                            <span class="metric">0 Manual Entry</span>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Google Drive</span>
+                            <span class="tech-badge">Claude API</span>
+                            <span class="tech-badge">OCR</span>
+                            <span class="tech-badge">Sheets</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>AI Booking Agent</h3>
+                        <p>Inbound phone automation</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Inbound phone system answering every call 24/7, booking appointments, rescheduling, and handling cancellations automatically—zero missed calls.</p>
+                        <div class="metrics">
+                            <span class="metric">24/7 Active</span>
+                            <span class="metric">Instant Booking</span>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">n8n</span>
+                            <span class="tech-badge">Retell AI</span>
+                            <span class="tech-badge">Calendar</span>
+                            <span class="tech-badge">Webhooks</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Support Email Agent</h3>
+                        <p>Automated email responses</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Automated email system answering customer support questions 24/7 using Claude API, eliminating wait times and reducing support team workload.</p>
+                        <div class="metrics">
+                            <span class="metric">Instant Response</span>
+                            <span class="metric">24/7 Coverage</span>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Email Node</span>
+                            <span class="tech-badge">Claude API</span>
+                            <span class="tech-badge">Logic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Data Sorting Automation</h3>
+                        <p>Bulk data processing pipeline</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Automated pipeline that watches Google Drive for uploads, sorts messy data into 3 categorized files using custom JavaScript logic, and auto-emails results.</p>
+                        <div class="metrics">
+                            <span class="metric">4hrs → 5min</span>
+                            <span class="metric">95% Faster</span>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Google Drive</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">Email</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Vapi Booking Agent</h3>
+                        <p>Multi-tool appointment system</p>
+                    </div>
+                    <div class="project-body">
+                        <p>AI inbound phone agent integrating Vapi, Cal.com, and Airtable for seamless appointment booking with CRM tracking and schedule synchronization.</p>
+                        <div class="metrics">
+                            <span class="metric">Multi-tool</span>
+                            <span class="metric">CRM Sync</span>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Vapi</span>
+                            <span class="tech-badge">Cal.com</span>
+                            <span class="tech-badge">Airtable</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="case-studies" style="background: var(--bg-tertiary);">
+        <div class="container">
+            <h2>Deep Dive Case Studies</h2>
+
+            <div class="case-study">
+                <h3>Lead Qualification Agent (Olivia)</h3>
+                <div class="case-study-meta">
+                    <span><strong>Status:</strong> Production-ready</span>
+                    <span><strong>Timeline:</strong> 10-node flow</span>
+                    <span><strong>Impact:</strong> Days → Minutes</span>
+                </div>
+
+                <h4 style="font-size: 16px; margin: 24px 0 12px; color: var(--text-primary);">Problem</h4>
+                <p>Sales teams spent days manually qualifying leads after form submissions. By the time they called, leads had already engaged with competitors.</p>
+
+                <h4 style="font-size: 16px; margin: 24px 0 12px; color: var(--text-primary);">Solution Architecture</h4>
+                <div class="flow-diagram">
+Form Trigger → Phone Format → Retell AI Call<br>
+    ↓<br>
+Airtable Create → Dynamic Variables → Qualification Script<br>
+    ↓<br>
+MEDDIC-Lite Questions → Scoring → Auto-Book (if qualified)<br>
+    ↓<br>
+Calendar Sync → Email Notification → CRM Update
+                </div>
+
+                <h4 style="font-size: 16px; margin: 24px 0 12px; color: var(--text-primary);">Key Features</h4>
+                <ul style="margin-left: 20px; color: var(--text-secondary);">
+                    <li><strong>MEDDIC-Lite qualification:</strong> Match, Pain, Budget, Authority, Timeline, Intent</li>
+                    <li><strong>Dynamic personalization:</strong> Calls leads by first name, references desired outcome</li>
+                    <li><strong>Auto-booking:</strong> High-quality leads directly book meetings (no manual follow-up)</li>
+                    <li><strong>E.164 phone formatting:</strong> Handles international numbers (Pakistan +92 format)</li>
+                    <li><strong>Objection handling:</strong> Scripted responses for common rejection patterns</li>
+                </ul>
+
+                <h4 style="font-size: 16px; margin: 24px 0 12px; color: var(--text-primary);">Results</h4>
+                <div class="highlights">
+                    <div class="highlight">
+                        <div class="highlight-number">95%</div>
+                        <div class="highlight-label">Faster qualification</div>
+                    </div>
+                    <div class="highlight">
+                        <div class="highlight-number">24/7</div>
+                        <div class="highlight-label">Automated calling</div>
+                    </div>
+                    <div class="highlight">
+                        <div class="highlight-number">100%</div>
+                        <div class="highlight-label">No missed calls</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h3>Invoice Processing Automation</h3>
+                <div class="case-study-meta">
+                    <span><strong>Status:</strong> Deployed</span>
+                    <span><strong>Processing:</strong> PDFs + Images</span>
+                    <span><strong>Impact:</strong> 4+ hours → 5 minutes</span>
+                </div>
+
+                <h4 style="font-size: 16px; margin: 24px 0 12px; color: var(--text-primary);">Problem</h4>
+                <p>Finance teams manually typed invoice data from PDFs into spreadsheets—error-prone, slow, and expensive at scale.</p>
+
+                <h4 style="font-size: 16px; margin: 24px 0 12px; color: var(--text-primary);">Solution</h4>
+                <div class="flow-diagram">
+Google Drive Trigger → OCR (Mistral) → Claude API Parsing<br>
+    ↓<br>
+Structured Extraction (Invoice #, Date, Line Items, Total)<br>
+    ↓<br>
+Google Sheets Insert → Email Notification → Archive
+                </div>
+
+                <h4 style="font-size: 16px; margin: 24px 0 12px; color: var(--text-primary);">Tech Stack</h4>
+                <ul style="margin-left: 20px; color: var(--text-secondary);">
+                    <li><strong>Google Drive node:</strong> Watches for new invoice uploads</li>
+                    <li><strong>Mistral OCR:</strong> Extracts text from scanned/image invoices</li>
+                    <li><strong>Claude API:</strong> Parses unstructured text → JSON (line items, totals, dates)</li>
+                    <li><strong>Google Sheets:</strong> Auto-populates structured data</li>
+                </ul>
+
+                <h4 style="font-size: 16px; margin: 24px 0 12px; color: var(--text-primary);">Results</h4>
+                <div class="highlights">
+                    <div class="highlight">
+                        <div class="highlight-number">95%</div>
+                        <div class="highlight-label">Time savings</div>
+                    </div>
+                    <div class="highlight">
+                        <div class="highlight-number">0</div>
+                        <div class="highlight-label">Manual entry</div>
+                    </div>
+                    <div class="highlight">
+                        <div class="highlight-number">100</div>
+                        <div class="highlight-label">Invoices/day</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h3>Data Sorting Automation</h3>
+                <div class="case-study-meta">
+                    <span><strong>Status:</strong> Active</span>
+                    <span><strong>Process:</strong> Watch, Sort, Email</span>
+                    <span><strong>Impact:</strong> 240min → 5min</span>
+                </div>
+
+                <h4 style="font-size: 16px; margin: 24px 0 12px; color: var(--text-primary);">Problem</h4>
+                <p>Electrical estimation team received messy data files from field teams and manually sorted into 3 categories (Materials, Labor, Equipment)—4+ hours per batch.</p>
+
+                <h4 style="font-size: 16px; margin: 24px 0 12px; color: var(--text-primary);">Solution</h4>
+                <div class="flow-diagram">
+Google Drive Trigger → Read File → JavaScript Sort Logic<br>
+    ↓<br>
+Categorize (Materials | Labor | Equipment)<br>
+    ↓<br>
+Create 3 Output Files → Email to Team
+                </div>
+
+                <h4 style="font-size: 16px; margin: 24px 0 12px; color: var(--text-primary);">Key Logic</h4>
+                <ul style="margin-left: 20px; color: var(--text-secondary);">
+                    <li>Parse uploaded CSV/JSON</li>
+                    <li>Custom JavaScript filtering by item category</li>
+                    <li>Auto-create 3 categorized files</li>
+                    <li>Email results to team leads</li>
+                </ul>
+
+                <h4 style="font-size: 16px; margin: 24px 0 12px; color: var(--text-primary);">Results</h4>
+                <div class="highlights">
+                    <div class="highlight">
+                        <div class="highlight-number">95%</div>
+                        <div class="highlight-label">Faster processing</div>
+                    </div>
+                    <div class="highlight">
+                        <div class="highlight-number">$0</div>
+                        <div class="highlight-label">Manual labor</div>
+                    </div>
+                    <div class="highlight">
+                        <div class="highlight-number">5min</div>
+                        <div class="highlight-label">Per batch</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>I'm <strong>Shahroze Afzal</strong>, an automation engineer based in Pakistan specializing in building production-grade AI voice agents and workflow automation systems using n8n, Retell AI, and Claude API.</p>
+
+                <p>For the past year, I've been obsessed with solving the same problem: <strong>How do you scale a business without scaling headcount?</strong> The answer isn't hiring more people—it's building smarter workflows.</p>
+
+                <p>My focus is on three core areas:</p>
+                <ul style="margin-left: 20px; color: var(--text-secondary);">
+                    <li><strong>AI Voice Agents:</strong> Building 24/7 outbound qualification and inbound booking systems that eliminate missed calls and reduce sales cycles from days to minutes.</li>
+                    <li><strong>Document Automation:</strong> Extracting data from invoices, forms, and contracts—eliminating manual data entry and reducing processing time by 95%.</li>
+                    <li><strong>Workflow Optimization:</strong> Designing n8n pipelines that save teams 5-40 hours per week by automating repetitive business tasks.</li>
+                </ul>
+
+                <p style="margin-top: 24px;">Every project I build is <strong>production-ready</strong>, fully tested, and designed for deployment. I don't build proof-of-concepts—I build systems that immediately deliver ROI.</p>
+
+                <p>Currently looking for: <strong>Full-time roles as a Automation Engineer, n8n Specialist, or AI Integration Engineer</strong> where I can help your team scale operations without scaling headcount.</p>
+
+                <div class="highlights" style="margin-top: 32px;">
+                    <div class="highlight">
+                        <div class="highlight-number">6+</div>
+                        <div class="highlight-label">Production workflows</div>
+                    </div>
+                    <div class="highlight">
+                        <div class="highlight-number">200+</div>
+                        <div class="highlight-label">Hours saved (monthly)</div>
+                    </div>
+                    <div class="highlight">
+                        <div class="highlight-number">3</div>
+                        <div class="highlight-label">AI voice agents</div>
+                    </div>
+                    <div class="highlight">
+                        <div class="highlight-number">1</div>
+                        <div class="highlight-label">Year focused</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="background: var(--bg-tertiary); text-align: center;">
+        <div class="container">
+            <h2>Let's Work Together</h2>
+            <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto;">Have a workflow that needs automation? Building an AI voice system? Let's talk about how I can help scale your business.</p>
+
+            <div class="social-links">
+                <a href="mailto:shahrozeafzal434@gmail.com" title="Email">✉️</a>
+                <a href="https://linkedin.com/in/shahroze-afzal" title="LinkedIn">in</a>
+                <a href="https://github.com/shahrozeafzal434" title="GitHub">⚙️</a>
+                <a href="https://x.com/shahroze" title="Twitter">𝕏</a>
+            </div>
+
+            <a href="mailto:shahrozeafzal434@gmail.com" class="btn primary" style="font-size: 16px; padding: 14px 32px;">Get in Touch</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="mailto:shahrozeafzal434@gmail.com">Email</a>
+                <a href="https://linkedin.com/in/shahroze-afzal">LinkedIn</a>
+                <a href="https://github.com/shahrozeafzal434">GitHub</a>
+            </div>
+            <p>© 2026 Shahroze Afzal. Built with n8n, Claude, and passion for automation.</p>
+        </div>
+    </footer>
+</body>
+</html>
